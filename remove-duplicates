@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import argparse
+
+# Parse the project name from command-line arguments
+parser = argparse.ArgumentParser(description='Path to file to be edited.')
+parser.add_argument('file_path', type=str, help='path to file to be edited')
+args = parser.parse_args()
+
+file_path = args.file_path
+
+def remove_duplicate_lines(file_path):
+    # Read the lines from the file
+    with open(file_path, 'r') as file:
+        original_lines = file.readlines()
+
+    # Convert the lines to a set to remove duplicates
+    unique_lines = set(original_lines)
+
+    # Find and print the duplicate lines
+    duplicate_lines = set(original_lines) - unique_lines
+    if duplicate_lines:
+        print("Removed duplicate lines:")
+        for line in sorted(duplicate_lines):
+            print(line.strip())
+
+    # Write the unique lines back to the file
+    with open(file_path, 'w') as file:
+        for line in sorted(unique_lines):
+            file.write(line)
+
+            
+if __name__ == '__main__':
+# Remove duplicate lines from the .gitignore file
+    remove_duplicate_lines(file_path)

@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+separator = '*-' * 25
+print(separator + '\ngRNA converter\n' + separator)
+
+input_sequence = input('\nEnter your DNA sequence: ')
+def transform_string(input_string):   
+    # Keep only the capital letters
+    capital_letters_only = ''.join(filter(str.isupper, input_string))  
+    # Replace 'U' with 'T'
+    result_string = capital_letters_only.replace('U', 'T')
+    
+    return result_string
+
+
+print(f"\nYour gRNA sequence is:\n\n{transform_string(input_sequence)}")
